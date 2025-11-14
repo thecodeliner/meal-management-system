@@ -1,0 +1,80 @@
+[12-Nov-2025 23:24:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/auth.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/auth.php on line 17
+[12-Nov-2025 23:24:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/mail.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/mail.php on line 17
+[12-Nov-2025 23:26:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/cache.php on line 18
+[12-Nov-2025 23:29:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/logging.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/logging.php on line 21
+[12-Nov-2025 23:33:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/session.php on line 21
+[12-Nov-2025 23:35:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/queue.php on line 16
+[12-Nov-2025 23:36:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/mail.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/mail.php on line 17
+[12-Nov-2025 23:36:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/auth.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/auth.php on line 17
+[12-Nov-2025 23:37:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/cache.php on line 18
+[12-Nov-2025 23:39:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/mail.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/mail.php on line 17
+[12-Nov-2025 23:45:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/session.php on line 21
+[12-Nov-2025 23:45:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/logging.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/logging.php on line 21
+[12-Nov-2025 23:46:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/database.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/database.php on line 19
+[12-Nov-2025 23:47:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/app.php on line 16
+[12-Nov-2025 23:47:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/services.php on line 18
+[13-Nov-2025 00:01:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/database.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/database.php on line 19
+[13-Nov-2025 00:05:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/app.php on line 16
+[13-Nov-2025 00:07:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/services.php on line 18
+[13-Nov-2025 00:45:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/filesystems.php on line 16
+[13-Nov-2025 01:03:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/config/filesystems.php on line 16

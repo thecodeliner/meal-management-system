@@ -1,0 +1,8 @@
+[13-Nov-2025 09:33:47 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/codelin1/public_html/subdomains/meal.codeliner.art/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/app/Providers/AppServiceProvider.php on line 7
+[13-Nov-2025 10:05:39 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/codelin1/public_html/subdomains/meal.codeliner.art/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/app/Providers/AppServiceProvider.php on line 7

@@ -1,0 +1,8 @@
+[13-Nov-2025 07:12:59 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Testing\TestCase" not found in /home/codelin1/public_html/subdomains/meal.codeliner.art/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/tests/TestCase.php on line 7
+[13-Nov-2025 07:37:26 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Testing\TestCase" not found in /home/codelin1/public_html/subdomains/meal.codeliner.art/tests/TestCase.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/codelin1/public_html/subdomains/meal.codeliner.art/tests/TestCase.php on line 7
