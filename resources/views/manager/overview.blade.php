@@ -13,7 +13,7 @@
                         </div>
                         <div>
                             <h3 class="text-sm font-medium text-gray-500">Total Members</h3>
-                            <p class="text-2xl font-bold text-gray-800">24</p>
+                            <p class="text-2xl font-bold text-gray-800">{{ $totalMembers }}</p>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         </div>
                         <div>
                             <h3 class="text-sm font-medium text-gray-500">Total Meals Today</h3>
-                            <p class="text-2xl font-bold text-gray-800">64</p>
+                            <p class="text-2xl font-bold text-gray-800">{{ $totalMealsToday }}</p>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         </div>
                         <div>
                             <h3 class="text-sm font-medium text-gray-500">Total Revenue</h3>
-                            <p class="text-2xl font-bold text-gray-800">$2,450</p>
+                            <p class="text-2xl font-bold text-gray-800">Tk. {{$totalPayments}}</p>
                         </div>
                     </div>
                 </div>
@@ -49,24 +49,20 @@
                         </div>
                         <div>
                             <h3 class="text-sm font-medium text-gray-500">Due Payments</h3>
-                            <p class="text-2xl font-bold text-gray-800">$480</p>
+                            <p class="text-2xl font-bold text-gray-800">Tk. {{$totalDues}}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-role-management')">
                     <i class="fas fa-user-cog text-red-500 text-2xl mb-2"></i>
                     <h3 class="text-sm font-medium text-gray-700">Manage Roles</h3>
                     <p class="text-xs text-gray-500 mt-1">Change user roles & permissions</p>
                 </div>
-                <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-meal-rates')">
-                    <i class="fas fa-money-bill-alt text-red-500 text-2xl mb-2"></i>
-                    <h3 class="text-sm font-medium text-gray-700">Update Meal Rates</h3>
-                    <p class="text-xs text-gray-500 mt-1">Set breakfast, lunch, dinner rates</p>
-                </div>
+               
                 <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-expense-heads')">
                     <i class="fas fa-list-alt text-red-500 text-2xl mb-2"></i>
                     <h3 class="text-sm font-medium text-gray-700">Manage Expense Heads</h3>

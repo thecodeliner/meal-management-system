@@ -6,6 +6,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ExpenseHeads;
+use App\Models\Meal;
+use App\Models\Payment;
+use App\Models\Bazar;
+use App\Models\MealRecords;
+use App\Models\MemberAdvance;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class ManagerController extends Controller
 {
@@ -100,9 +108,48 @@ class ManagerController extends Controller
     {
         return view('manager.profile');
     }
+
     public function overview()
     {
-        return view('manager.overview');
+        //total members
+        $totalMembers = User::whereIn('role', ['member', 'operations', 'accountant'])
+                    ->where('status', 'active')
+                    ->count();
+
+
+        //total meals today
+        $totalMealsToday = MealRecords::whereDate('date', Carbon::today())
+            ->get()
+            ->sum(function($meal) {
+                return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+            });
+        //total payments 
+        
+        $totalAdvance  = MemberAdvance::whereMonth('created_at', Carbon::now()->month)
+                                ->whereYear('created_at', Carbon::now()->year)
+                                ->sum('advance');
+        //payments this month
+        $paymentsThisMonth = Payment::whereMonth('created_at', Carbon::now()->month)
+                                ->whereYear('created_at', Carbon::now()->year)
+                                ->sum('amount');
+        $totalPayments = $totalAdvance + $paymentsThisMonth;       
+        
+        //total bazar
+        $totalBazar = Bazar::whereMonth('created_at', Carbon::now()->month)
+                                ->whereYear('created_at', Carbon::now()->year)
+                                ->sum('amount');
+        //total utility
+        $totalUtility = ExpenseHeads::whereMonth('created_at', Carbon::now()->month)
+                                ->whereYear('created_at', Carbon::now()->year)      
+                                ->sum('amount');
+
+        //total dues    
+        $totalDues = ($totalBazar + $totalUtility) - $totalPayments;
+
+
+        return view('manager.overview', 
+        compact('totalMembers', 'totalMealsToday', 'totalPayments', 'totalDues')
+    );
     }
     public function expenses()
     {

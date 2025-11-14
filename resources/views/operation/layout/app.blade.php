@@ -50,10 +50,7 @@
                     <i class="fas fa-shopping-cart w-5 mr-3"></i>
                     <span>Daily Bazar</span>
                 </a>
-                <a href="{{ route('operation.costing') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 {{ Route::is('operation.costing') ? 'sidebar-active' : '' }}" data-page="operations-costing">
-                    <i class="fas fa-calculator w-5 mr-3"></i>
-                    <span>Costing Details</span>
-                </a>
+               
                 <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase mt-4">Account</div>
                 <a href="{{ route('operation.profile') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600  {{ Route::is('operation.profile') ? 'sidebar-active' : '' }}" data-page="operations-profile">
                     <i class="fas fa-user-cog w-5 mr-3"></i>

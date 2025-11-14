@@ -41,16 +41,16 @@
                         @endforeach
                          <div class="flex justify-between border-t pt-2 font-bold">
                             <span>Due:</span>
-                            <span class="text-red-600">Tk. {{$totalDue}}</span>
+                            <span class="text-red-600">Tk. {{number_format($totalDue,2)}}</span>
                         </div>
                         <div class="flex justify-between border-t pt-2 font-bold">
                             <span>Advance: </span>
-                            <span class="text-green-600">Tk. {{$totalAdvance}}</span>
+                            <span class="text-green-600">Tk. {{number_format($totalAdvance,2)}}</span>
                         </div>
                         
                         <div class="flex justify-between border-t pt-2 font-bold">
                             <span>Total Payable: </span>
-                            <span class="text-blue-600">Tk. {{$payable}}</span>
+                            <span class="text-blue-600">Tk. {{number_format($payable,2)}}</span>
                         </div>
                     </div>
                     <div class="mt-4 grid grid-cols-2 gap-2">

@@ -37,25 +37,16 @@
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Source</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Percentage</th>
+                          
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Meal Bills</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1,740.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">71%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Payment Received</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Tk. {{ $income['totalIncome'] }}</td>
+                                   
                                 </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Room Rent</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$480.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">19.6%</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Utility Bills</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$230.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">9.4%</td>
-                                </tr>
+                              
                             </tbody>
                         </table>
                     </div>
@@ -69,24 +60,28 @@
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Percentage</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
+                                                                    
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Bazar Expenses</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$780.50</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">68.1%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $income['totalBazar'] }}</td>
+                                   
                                 </tr>
+                                
+                                 @foreach ($expenses as $expense)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Utility Bills</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$245.75</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">21.4%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $expense->head }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $expense->amount}}</td>
+                                    
                                 </tr>
+                                @endforeach
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Other Expenses</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$120.00</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10.5%</td>
+                                    <td class="px-6 py-4 font-bold whitespace-nowrap text-sm font-medium text-gray-900">Total</td>
+                                    <td class="px-6 py-4 font-bold whitespace-nowrap text-sm text-blue-500">{{ $income['totalBazar']+ $income['totalUtility'] }}</td>
+                                    
                                 </tr>
                             </tbody>
                         </table>

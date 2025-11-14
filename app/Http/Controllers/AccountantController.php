@@ -15,8 +15,28 @@ use App\Models\Bazar;
 class AccountantController extends Controller
 {
     public function overview()
+
     {
-        return view('accountant.overview');
+        $totalAdvances = MemberAdvance::sum('advance');
+        //total payments
+        $paymentReceived = Payment::sum('amount');
+        $totalPayments = $totalAdvances + $paymentReceived;
+        //total dues
+        
+        $totalBazar = Bazar::sum('amount');
+        $totalUtility = ExpenseHeads::sum('amount');
+        $totalDues = ($totalBazar + $totalUtility) - $totalPayments;
+        //paid members
+        
+        $payments = Payment::with('user')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); 
+        //show month name from created_at
+        foreach ($payments as $payment) {
+            $payment->month = Carbon::parse($payment->created_at)->format('F Y');
+        }
+        return view('accountant.overview', compact('payments', 'totalPayments', 'totalDues'));
+        
     }
 
    
@@ -179,14 +199,18 @@ class AccountantController extends Controller
         //room rent
         $roorRent = ExpenseHeads::where('head', 'Room Rent')->sum('amount');
 
+        $bazars = Bazar::all();
+        $expenses = ExpenseHeads::all();
+
         $income= [
             'totalIncome' => $totalIncome,
             'totalBazar' => $totalBazar,
             'totalUtility' => $totalUtility,
             'totalExpense' => $totalExpense,
             'netBalance' => $netBalance,
+            'roorRent' => $roorRent,
         ];
-        return view('accountant.financial', compact('income'));
+        return view('accountant.financial', compact('income', 'bazars', 'expenses'));
     }
 
     public function profile()

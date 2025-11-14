@@ -7,13 +7,45 @@ use App\Models\Bazar;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Hash;
+use App\Models\ExpenseHeads;
+use App\Models\Meal;
+use App\Models\Payment;
+
+use App\Models\MealRecords;
+use App\Models\MemberAdvance;
+
+use Carbon\Carbon;
+
 
 class OperationController extends Controller
 {
     //overview
     public function overview()
     {
-        return view('operation.overview');
+        $bazars = Bazar::with('user')->orderBy('date', 'desc')->paginate(10);
+
+        //todays bazar entries
+        $todaysBazarCount = Bazar::whereDate('date', Carbon::today())->count();
+        //meal today
+        $totalMealsToday = MealRecords::whereDate('date', Carbon::today())
+            ->get()
+            ->sum(function($meal) {
+                return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+            });
+        //monthly bazar total
+        $monthlyBazarTotal = Bazar::whereMonth('date', Carbon::now()->month)
+                                ->whereYear('date', Carbon::now()->year)
+                                ->sum('amount');
+        //active members
+        $activeMembersCount = User::whereIn('role', ['member', 'operations', 'accountant'])
+                                ->where('status', 'active')
+                                ->count();
+
+        
+        return view('operation.overview', 
+        compact('todaysBazarCount', 'totalMealsToday', 'monthlyBazarTotal', 'activeMembersCount', 'bazars')
+    );
     }
     //bazars
 
@@ -29,7 +61,7 @@ class OperationController extends Controller
         ]);
 
         Bazar::create([
-            'user_id' => auth()->id(),
+            'user_id' => auth::user()->id,
             'date' => $validated['date'],
             'items' => $validated['items'],
             'amount' => $validated['amount'],

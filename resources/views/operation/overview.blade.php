@@ -10,9 +10,9 @@
                     <div class="p-3 rounded-full bg-blue-100 text-blue-500 mr-4">
                         <i class="fas fa-shopping-cart text-xl"></i>
                     </div>
-                    <div>
+                    <div>  
                         <h3 class="text-sm font-medium text-gray-500">Today's Bazar</h3>
-                        <p class="text-2xl font-bold text-gray-800">$45.50</p>
+                        <p class="text-2xl font-bold text-gray-800">{{ $todaysBazarCount }}</p>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     </div>
                     <div>
                         <h3 class="text-sm font-medium text-gray-500">Total Meals Today</h3>
-                        <p class="text-2xl font-bold text-gray-800">64</p>
+                        <p class="text-2xl font-bold text-gray-800">{{ $totalMealsToday }}</p>
                     </div>
                 </div>
             </div>
@@ -35,8 +35,8 @@
                         <i class="fas fa-money-bill-wave text-xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-sm font-medium text-gray-500">Monthly Expense</h3>
-                        <p class="text-2xl font-bold text-gray-800">$1,250</p>
+                        <h3 class="text-sm font-medium text-gray-500">Monthly Bazar Expense</h3>
+                        <p class="text-2xl font-bold text-gray-800">{{ $monthlyBazarTotal }}</p>
                     </div>
                 </div>
             </div>
@@ -47,8 +47,8 @@
                         <i class="fas fa-percentage text-xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-sm font-medium text-gray-500">Current Meal Rate</h3>
-                        <p class="text-2xl font-bold text-gray-800">$4.15</p>
+                        <h3 class="text-sm font-medium text-gray-500">Active Members</h3>
+                        <p class="text-2xl font-bold text-gray-800">{{ $activeMembersCount }}</p>
                     </div>
                 </div>
             </div>
@@ -68,24 +68,18 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
+                        @foreach ($bazars as $bazar )
+                            
+                        
                         <tr>
-                            <td class="px-4 py-3 whitespace-nowrap">2023-10-15</td>
-                            <td class="px-4 py-3">Rice, Chicken, Vegetables</td>
-                            <td class="px-4 py-3 whitespace-nowrap">$45.50</td>
-                            <td class="px-4 py-3 whitespace-nowrap">You</td>
+                            
+                            <td class="px-4 py-3 whitespace-nowrap">{{ $bazar->date }}</td>
+                            <td class="px-4 py-3">{{ $bazar->items }}</td>
+                            <td class="px-4 py-3 whitespace-nowrap">{{ $bazar->amount }}</td>
+                            <td class="px-4 py-3 whitespace-nowrap">{{ $bazar->user->name }}</td>
+                            
                         </tr>
-                        <tr>
-                            <td class="px-4 py-3 whitespace-nowrap">2023-10-14</td>
-                            <td class="px-4 py-3">Fish, Oil, Spices</td>
-                            <td class="px-4 py-3 whitespace-nowrap">$32.75</td>
-                            <td class="px-4 py-3 whitespace-nowrap">You</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3 whitespace-nowrap">2023-10-13</td>
-                            <td class="px-4 py-3">Beef, Lentils, Fruits</td>
-                            <td class="px-4 py-3 whitespace-nowrap">$38.20</td>
-                            <td class="px-4 py-3 whitespace-nowrap">You</td>
-                        </tr>
+                       @endforeach
                     </tbody>
                 </table>
             </div>

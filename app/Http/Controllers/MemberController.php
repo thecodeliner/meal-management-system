@@ -18,12 +18,83 @@ class MemberController extends Controller
     //member overview
     public function overview()
     {
-        $mealRates = MealRate::whereIn('meal_type', ['breakfast', 'lunch', 'dinner','guest'])
-        ->pluck('rate', 'meal_type');
+        $currentMonth = now()->month;
+        $currentYear = now()->year;
+
         
+        
+        //my total meals
+        $myTotalMeals = MealRecords::where('user_id', Auth::id())
+        ->get()
+        ->sum(function ($meal) {
+            return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+        });
+
+          // Meal Counts
+    $mealRecords = MealRecords::where('user_id', Auth::id())
+        ->select('date', 'breakfast', 'lunch', 'dinner', 'guest')
+        ->get();
+        
+        $totalCount = [
+        'breakfast' => $mealRecords->sum('breakfast'),
+        'lunch' => $mealRecords->sum('lunch'),
+        'dinner' => $mealRecords->sum('dinner'),
+        'guest' => $mealRecords->sum('guest')
+    ];
+
+        //my meal cost
+         $totalMeal = array_sum($totalCount);
+
+    // all total meals in month of all user
+    $totalMealsAllMembers = MealRecords::whereMonth('date', $currentMonth)
+    ->whereYear('date', $currentYear)
+    ->get()
+    ->sum(function($meal) {
+        return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+    });
+
+    // all total meals in month of auth user
+    $usersTotalMeal = MealRecords::where('user_id', Auth::id())
+    ->whereMonth('date', $currentMonth)
+    ->whereYear('date', $currentYear)
+    ->get()
+    ->sum(function($meal) {
+        return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+    });
+       // Bazar Expense (Total)
+    $bazarBill = Bazar::whereMonth('date', $currentMonth)
+                    ->whereYear('date', $currentYear)
+                    ->sum('amount');
+
+    // Other Utility Bills (Grouped)
+    $allBills = ExpenseHeads::whereMonth('created_at', $currentMonth)
+                        ->whereYear('created_at', $currentYear)
+                        ->get()
+                        ->groupBy('head');
+        
+        $members = User::whereIn('role', ['member', 'accountant', 'operations'])
+                        ->where('status', 'active')
+                        ->get();
+        $totalMembers = $members->count();
+
+    //member bazar bill per member
+    $bazarBillPerHead = 0;
+
+        if ($totalMealsAllMembers > 0) {
+            $bazarBillPerHead = $bazarBill / $totalMealsAllMembers * $usersTotalMeal;
+        }
+        //my total dues
+        $totalAdvance  = MemberAdvance::where('user_id', Auth::id())
+                                ->sum('advance');
+        $myTotalPayments = $totalAdvance;        
        
         
-        return view('members.overview', compact('mealRates'));
+       
+       
+        
+        return view('members.overview', 
+        compact( 'myTotalMeals', 'bazarBillPerHead', 'totalAdvance', 'totalCount')
+    );
 
     }
 

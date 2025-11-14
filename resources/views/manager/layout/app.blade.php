@@ -47,18 +47,12 @@
                     <i class="fas fa-user-cog w-5 mr-3"></i>
                     <span>Role Management</span>
                 </a>
-                <a href="{{ route('manager.mealRate') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 {{ Route::is('manager.mealRate') ? 'sidebar-active' : '' }}" data-page="manager-meal-rates">
-                    <i class="fas fa-money-bill-alt w-5 mr-3"></i>
-                    <span>Meal Rates</span>
-                </a>
+               
                 <a href="{{ route('manager.expenses') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 {{ Route::is('manager.expenses') ? 'sidebar-active' : '' }}" data-page="manager-expense-heads">
                     <i class="fas fa-list-alt w-5 mr-3"></i>
                     <span>Expense Heads</span>
                 </a>
-                <a href="{{ route('manager.accounts') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 {{ Route::is('manager.accounts') ? 'sidebar-active' : '' }}" data-page="manager-accounts">
-                    <i class="fas fa-calculator w-5 mr-3"></i>
-                    <span>Manage Accounts</span>
-                </a>
+               
                 <a href="{{ route('manager.reports') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 {{ Route::is('manager.reports') ? 'sidebar-active' : '' }}" data-page="manager-reports">
                     <i class="fas fa-chart-bar w-5 mr-3"></i>
                     <span>Reports</span>

@@ -8,14 +8,14 @@
     <table class="w-full border-collapse text-sm">
         <thead>
             <tr class="bg-gray-100">
-                <th class="border px-3 py-2">Name</th>
-                <th class="border px-3 py-2">Meals</th>
-                <th class="border px-3 py-2">Bazar Share</th>
-                <th class="border px-3 py-2">Utility</th>
-                <th class="border px-3 py-2">Total Bill</th>
-                <th class="border px-3 py-2">Advance</th>
-                <th class="border px-3 py-2">Due</th>
-                <th class="border px-3 py-2">Paid</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Meals</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bazar Share</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rent / Utility</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Bill</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Advance</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Paid</th>
             </tr>
         </thead>
 

@@ -43,10 +43,7 @@
                     <i class="fas fa-money-bill-wave w-5 mr-3"></i>
                     <span>Due Payments</span>
                 </a>
-                <a href="{{ route('accountant.payments') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 {{ Route::is('accountant.payments') ? 'sidebar-active' : '' }}" >
-                    <i class="fas fa-money-bill-wave w-5 mr-3"></i>
-                    <span>Receive Payments</span>
-                </a>
+               
                 <a href="{{ route('accountant.financial') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 {{ Route::is('accountant.financial') ? 'sidebar-active' : '' }}" >
                     <i class="fas fa-chart-bar w-5 mr-3"></i>
                     <span>Financial Reports</span>
