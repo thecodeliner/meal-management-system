@@ -44,7 +44,7 @@ class AccountantController extends Controller
 
     public function dues()
     {
-      $currentMonth = now()->month;
+    $currentMonth = now()->month;
     $currentYear  = now()->year;
 
     // All active users (members, accountant, operations)
@@ -215,6 +215,10 @@ class AccountantController extends Controller
 
     public function profile()
     {
-        return view('accountant.profile');
+        //accoutant profile
+        
+        $users =Auth::user(); 
+        return view('accountant.profile', compact('users'));
+
     }
 }

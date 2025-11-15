@@ -57,22 +57,22 @@
 
             <!-- Quick Actions -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-role-management')">
+                <a href="{{ route('manager.role') }}" class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-role-management')">
                     <i class="fas fa-user-cog text-red-500 text-2xl mb-2"></i>
                     <h3 class="text-sm font-medium text-gray-700">Manage Roles</h3>
                     <p class="text-xs text-gray-500 mt-1">Change user roles & permissions</p>
-                </div>
+                </a>
                
-                <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-expense-heads')">
+                <a href="{{ route('manager.expenses') }}" class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-expense-heads')">
                     <i class="fas fa-list-alt text-red-500 text-2xl mb-2"></i>
                     <h3 class="text-sm font-medium text-gray-700">Manage Expense Heads</h3>
                     <p class="text-xs text-gray-500 mt-1">Add wifi, Bua, electricity bills</p>
-                </div>
-                <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-members')">
+                </a>
+                <a href="{{ route('manager.members') }}" class="bg-white rounded-lg shadow p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-red-50 transition-colors" onclick="showPage('manager-members')">
                     <i class="fas fa-user-plus text-red-500 text-2xl mb-2"></i>
                     <h3 class="text-sm font-medium text-gray-700">Add New Member</h3>
                     <p class="text-xs text-gray-500 mt-1">Register new members</p>
-                </div>
+                </a>
             </div>
 
             <!-- Recent Activity -->

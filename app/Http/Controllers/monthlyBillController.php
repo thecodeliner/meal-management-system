@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\MemberAdvance;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\Payment;
 use App\Models\Bazar;
 
 class monthlyBillController extends Controller
@@ -100,6 +101,17 @@ class monthlyBillController extends Controller
 
     $payable = $totalDue - $totalAdvance;
 
+     //payment history
+       $peymentHistorey = Payment::where('user_id', Auth::id())    
+                            ->orderBy('id', 'desc')
+                            ->get();
+       $paymentSum = $peymentHistorey->sum('amount');
+                     
+       $paidAmount = $payable - $paymentSum;
+       if($paidAmount < 0){
+        $paidAmount =0;
+       } 
+
 
     return view('members.bills', [
         'totalMembers' => $totalMembers,
@@ -111,7 +123,11 @@ class monthlyBillController extends Controller
         'totalAdvance' => $totalAdvance,
         'payable' => $payable,
         'totalCount' => $totalCount,
-        'bazarBillPerHead'=> $bazarBillPerHead
+        'bazarBillPerHead'=> $bazarBillPerHead,
+        'paidAmount' => $paidAmount,
+        'paymentSum' => $paymentSum,
+        
+
     ]);
 }
 

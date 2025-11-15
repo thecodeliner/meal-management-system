@@ -102,11 +102,108 @@ class ManagerController extends Controller
     }
     public function reports()
     {
-        return view('manager.reports');
+         $currentMonth = now()->month;
+    $currentYear  = now()->year;
+
+    // All active users (members, accountant, operations)
+    $users = User::whereIn('role', ['member', 'accountant', 'operations'])
+                ->where('status', 'active')
+                ->get();
+
+    $totalMembers = $users->count();
+
+    // ====== TOTAL MEALS OF ALL MEMBERS ======
+    $totalMealsAllMembers = MealRecords::whereMonth('date', $currentMonth)
+        ->whereYear('date', $currentYear)
+        ->get()
+        ->sum(function ($meal) {
+            return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+        });
+
+    // ====== BAZAR TOTAL ======
+    $bazarBill = Bazar::whereMonth('date', $currentMonth)
+        ->whereYear('date', $currentYear)
+        ->sum('amount');
+
+    // ====== UTILITY BILLS ======
+    $allBills = ExpenseHeads::whereMonth('created_at', $currentMonth)
+        ->whereYear('created_at', $currentYear)
+        ->get()
+        ->groupBy('head');
+
+    $utilityPerHead = 0;
+
+    foreach ($allBills as $items) {
+        $utilityPerHead += $items->sum('amount') / $totalMembers;
     }
+
+    // ===== FINAL DUE LIST =====
+    $dueList = [];
+
+    foreach ($users as $user) {
+
+        // USER TOTAL MEAL
+        $userMeals = MealRecords::where('user_id', $user->id)
+            ->whereMonth('date', $currentMonth)
+            ->whereYear('date', $currentYear)
+            ->get()
+            ->sum(function ($meal) {
+                return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+            });
+
+        // BAZAR SHARE BASED ON MEAL RATIO
+        $bazarBillPerHead = 0;
+
+        if ($totalMealsAllMembers > 0) {
+            $bazarBillPerHead = ($bazarBill / $totalMealsAllMembers) * $userMeals;
+        }
+
+        // Total bill for this user
+        $totalDue = $utilityPerHead + $bazarBillPerHead;
+
+        // User advance
+        $advance = MemberAdvance::where('user_id', $user->id)
+            ->whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->sum('advance');
+
+        $payable = $totalDue - $advance;
+
+        //user payment
+        $payments = Payment::where('user_id', $user->id)
+            ->whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->sum('amount');
+
+            $paid = $payments;
+
+            $balance = ($totalDue - $advance) - $paid;
+            //dd($paid);
+
+        // ADD USER DATA TO LIST
+        $reports[] = [
+            'name' => $user->name,
+            'meal' => $userMeals,
+            'role' => ucfirst($user->role),
+            'bazarShare' => round($bazarBillPerHead, 2),
+            'utility' => round($utilityPerHead, 2),
+            'totalDue' => round($totalDue, 2),
+            'advance' => $advance,
+            'payable' => round($payable, 2),
+            'paid' => round($paid, 2),
+            'balance' => round($balance, 2),
+        ];
+    }
+        return view('manager.reports',[
+        'reports' => $reports,
+        'users' => $users,
+    ]);    
+
+    }
+
     public function profile()
-    {
-        return view('manager.profile');
+    {   $users = Auth::user();
+        return view('manager.profile', compact('users'));
     }
 
     public function overview()
@@ -180,6 +277,102 @@ class ManagerController extends Controller
 
     public function search()
     {
-        return view('manager.search');
+                 $currentMonth = now()->month;
+    $currentYear  = now()->year;
+
+    // All active users (members, accountant, operations)
+    $users = User::whereIn('role', ['member', 'accountant', 'operations'])
+                ->where('status', 'active')
+                ->get();
+
+    $totalMembers = $users->count();
+
+    // ====== TOTAL MEALS OF ALL MEMBERS ======
+    $totalMealsAllMembers = MealRecords::whereMonth('date', $currentMonth)
+        ->whereYear('date', $currentYear)
+        ->get()
+        ->sum(function ($meal) {
+            return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+        });
+
+    // ====== BAZAR TOTAL ======
+    $bazarBill = Bazar::whereMonth('date', $currentMonth)
+        ->whereYear('date', $currentYear)
+        ->sum('amount');
+
+    // ====== UTILITY BILLS ======
+    $allBills = ExpenseHeads::whereMonth('created_at', $currentMonth)
+        ->whereYear('created_at', $currentYear)
+        ->get()
+        ->groupBy('head');
+
+    $utilityPerHead = 0;
+
+    foreach ($allBills as $items) {
+        $utilityPerHead += $items->sum('amount') / $totalMembers;
+    }
+
+    // ===== FINAL DUE LIST =====
+    $dueList = [];
+
+    foreach ($users as $user) {
+
+        // USER TOTAL MEAL
+        $userMeals = MealRecords::where('user_id', $user->id)
+            ->whereMonth('date', $currentMonth)
+            ->whereYear('date', $currentYear)
+            ->get()
+            ->sum(function ($meal) {
+                return $meal->breakfast + $meal->lunch + $meal->dinner + $meal->guest;
+            });
+
+        // BAZAR SHARE BASED ON MEAL RATIO
+        $bazarBillPerHead = 0;
+
+        if ($totalMealsAllMembers > 0) {
+            $bazarBillPerHead = ($bazarBill / $totalMealsAllMembers) * $userMeals;
+        }
+
+        // Total bill for this user
+        $totalDue = $utilityPerHead + $bazarBillPerHead;
+
+        // User advance
+        $advance = MemberAdvance::where('user_id', $user->id)
+            ->whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->sum('advance');
+
+        $payable = $totalDue - $advance;
+
+        //user payment
+        $payments = Payment::where('user_id', $user->id)
+            ->whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->sum('amount');
+
+            $paid = $payments;
+
+            $balance = ($totalDue - $advance) - $paid;
+            //dd($paid);
+
+        // ADD USER DATA TO LIST
+        $reports[] = [
+            'name' => $user->name,
+            'meal' => $userMeals,
+            'role' => ucfirst($user->role),
+            'bazarShare' => round($bazarBillPerHead, 2),
+            'utility' => round($utilityPerHead, 2),
+            'totalDue' => round($totalDue, 2),
+            'advance' => $advance,
+            'payable' => round($payable, 2),
+            'paid' => round($paid, 2),
+            'balance' => round($balance, 2),
+        ];
+    }
+        return view('manager.search',[
+        'reports' => $reports,
+        'users' => $users,
+    ]); 
+        
     }
 }

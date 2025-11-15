@@ -79,7 +79,7 @@
 
             <!-- Current Meal Rates -->
             <div class="bg-white rounded-lg shadow p-4">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Current Meal Rates</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Current Meals</h3>
                 <div class="space-y-3">
                    
                     <div class="flex justify-between items-center py-2 border-b">

@@ -48,6 +48,14 @@
                     <i class="fas fa-history w-5 mr-3"></i>
                     <span>Payment History</span>
                 </a>
+                <a href="{{ route('operation.overview') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600  {{ Route::is('operation.overview') ? 'sidebar-active' : '' }}" data-page="operations-overview">
+                    <i class="fas fa-tachometer-alt w-5 mr-3"></i>
+                    <span>Operations Area</span>
+                </a>
+                 <a href="{{ route('accountant.overview') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 {{ Route::is('accountant.overview') ? 'sidebar-active' : '' }}" >
+                    <i class="fas fa-chart-bar w-5 mr-3"></i>
+                    <span>Accountant Area</span>
+                </a>
                 <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase mt-4">Account</div>
                 <a href="{{ route('member.profile') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-600 {{ Route::is('member.profile') ? 'sidebar-active' : '' }}" data-page="member-profile">
                     <i class="fas fa-user-cog w-5 mr-3"></i>
@@ -88,8 +96,15 @@
                                 <div class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center text-white">
                                     <span>JD</span>
                                 </div>
-                                <span class="hidden md:block font-medium text-gray-700">{{ Auth::user()->name }}</span>
-                                <i class="fas fa-chevron-down text-gray-500 text-xs"></i>
+                               <div>
+                                    <span class="hidden md:block font-medium text-gray-700">
+                                        {{ Auth::user()->name }}
+                                    </span>
+                                    <p class="text-gray-400 text-sm -mt-1">
+                                        {{ Auth::user()->role }}
+                                    </p>
+                                </div>
+                               <!-- <i class="fas fa-chevron-down text-gray-500 text-xs"></i> -->
                             </button>
                         </div>
                     </div>

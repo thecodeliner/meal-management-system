@@ -52,16 +52,22 @@
                             <span>Total Payable: </span>
                             <span class="text-blue-600">Tk. {{number_format($payable,2)}}</span>
                         </div>
+
+                         <div class="flex justify-between border-t pt-2 font-bold">
+                            <span>Paid: </span>
+                            <span class="text-blue-600">Tk. {{number_format($paymentSum,2)}}</span>
+                        </div>
+                        <div class="flex justify-between border-t pt-2 font-bold">
+                            <span>Balance: </span>
+                            <span class="text-red-600">Tk. {{number_format($paidAmount,2)}}</span>
+                        </div>
                     </div>
-                    <div class="mt-4 grid grid-cols-2 gap-2">
-                        <button class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md">
-                            Pay Full Amount
-                        </button>
+                    <div class="mt-4 flex justify-end">
                         <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">
-                            Pay Partial
+                            Download Report
                         </button>
                     </div>
-                </div>
+                    </div>
 
                 <!-- Advance Payment & Payment Methods -->
                 <div class="space-y-6">

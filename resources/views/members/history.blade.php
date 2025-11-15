@@ -12,50 +12,25 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Month</th>
+                        
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Method</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receipt</th>
+                        
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($peymentHistorey as $item)
+                        
+                    
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-10</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">October 2023</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$120.00</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Bank Transfer</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Completed</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="#" class="text-blue-600 hover:text-blue-900">Download</a>
-                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$item->created_at->format('d.m.Y')}}</td>
+                        
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$item->amount}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$item->type}}</td>
+                        
+                       
                     </tr>
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-30</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">September 2023</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$157.70</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Cash</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Completed</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="#" class="text-blue-600 hover:text-blue-900">Download</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-31</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">August 2023</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$166.00</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">bKash</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Completed</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="#" class="text-blue-600 hover:text-blue-900">Download</a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

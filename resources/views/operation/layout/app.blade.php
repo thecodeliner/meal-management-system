@@ -50,16 +50,24 @@
                     <i class="fas fa-shopping-cart w-5 mr-3"></i>
                     <span>Daily Bazar</span>
                 </a>
+                <a href="{{ route('member.overview') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 {{ Route::is('member.overview') ? 'sidebar-active' : '' }}" data-page="member-overview">
+                    <i class="fas fa-tachometer-alt w-5 mr-3"></i>
+                    <span>My Member Area</span>
+                </a>
                
                 <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase mt-4">Account</div>
                 <a href="{{ route('operation.profile') }}" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600  {{ Route::is('operation.profile') ? 'sidebar-active' : '' }}" data-page="operations-profile">
                     <i class="fas fa-user-cog w-5 mr-3"></i>
                     <span>Profile Settings</span>
                 </a>
-                <a href="index.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                 <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                <button class="w-full flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-600">
                     <i class="fas fa-sign-out-alt w-5 mr-3"></i>
                     <span>Logout</span>
-                </a>
+                </button>
+                </form>
+                
             </nav>
         </div>
 
@@ -88,8 +96,14 @@
                                 <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
                                     <span>OM</span>
                                 </div>
-                                <span class="hidden md:block font-medium text-gray-700">Operations Manager</span>
-                                <i class="fas fa-chevron-down text-gray-500 text-xs"></i>
+                                <div>
+                                    <span class="hidden md:block font-medium text-gray-700">
+                                        {{ Auth::user()->name }}
+                                    </span>
+                                    <p class="text-gray-400 text-sm -mt-1">
+                                        {{ Auth::user()->role }}
+                                    </p>
+                                </div>
                             </button>
                         </div>
                     </div>

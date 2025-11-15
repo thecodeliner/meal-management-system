@@ -66,10 +66,13 @@
                     <i class="fas fa-user-cog w-5 mr-3"></i>
                     <span>Profile Settings</span>
                 </a>
-                <a href="index.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                <button class="w-full flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-600">
                     <i class="fas fa-sign-out-alt w-5 mr-3"></i>
                     <span>Logout</span>
-                </a>
+                </button>
+                </form>
             </nav>
         </div>
 
@@ -98,8 +101,14 @@
                                 <div class="h-8 w-8 rounded-full bg-red-500 flex items-center justify-center text-white">
                                     <span>MN</span>
                                 </div>
-                                <span class="hidden md:block font-medium text-gray-700">{{ Auth::user()->role }} {{ Auth::user()->name }}</span>
-                                <i class="fas fa-chevron-down text-gray-500 text-xs"></i>
+                                 <div>
+                                    <span class="hidden md:block font-medium text-gray-700">
+                                        {{ Auth::user()->name }}
+                                    </span>
+                                    <p class="text-gray-400 text-sm -mt-1">
+                                        {{ Auth::user()->role }}
+                                    </p>
+                                </div>
                             </button>
                         </div>
                     </div>
@@ -139,6 +148,83 @@
         form.classList.toggle('hidden');
     }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Arrays to store table values
+    let names = [];
+    let meals = [];
+    let totalBills = [];
+    let paidAmounts = [];
+
+    // Loop through table rows
+    document.querySelectorAll("tbody tr").forEach(row => {
+        const cells = row.querySelectorAll("td");
+
+        const name = cells[0].innerText.trim();
+        const meal = parseFloat(cells[1].innerText.trim());
+        const totalBill = parseFloat(cells[4].innerText.replace("Tk.", "").trim());
+        const paid = parseFloat(cells[7].innerText.replace("Tk.", "").trim());
+
+        names.push(name);
+        meals.push(meal);
+        totalBills.push(totalBill);
+        paidAmounts.push(paid);
+    });
+
+    // -------------------------------
+    // 1. MEAL DISTRIBUTION PIE CHART
+    // -------------------------------
+    const ctx1 = document.getElementById('mealChart').getContext('2d');
+    new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            labels: names,
+            datasets: [{
+                data: meals,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    // ----------------------------------------
+    // 2. INCOME VS TOTAL BILL GROUP BAR CHART
+    // ----------------------------------------
+    const ctx2 = document.getElementById('incomeChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: names,
+            datasets: [
+                {
+                    label: 'Paid',
+                    data: paidAmounts,
+                    borderWidth: 1
+                },
+                {
+                    label: 'Total Bill',
+                    data: totalBills,
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+});
+</script>
+
+
 
 </body>
 </html>

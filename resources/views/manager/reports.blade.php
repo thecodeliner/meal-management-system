@@ -10,13 +10,13 @@
                 <div>
                     <h4 class="text-md font-medium text-gray-700 mb-2">Income vs Expenses</h4>
                     <div class="bg-gray-100 p-4 rounded-lg h-64 flex items-center justify-center">
-                        <p class="text-gray-500">Chart would be displayed here</p>
+                       <canvas id="incomeChart"></canvas>
                     </div>
                 </div>
                 <div>
                     <h4 class="text-md font-medium text-gray-700 mb-2">Meal Distribution</h4>
                     <div class="bg-gray-100 p-4 rounded-lg h-64 flex items-center justify-center">
-                        <p class="text-gray-500">Chart would be displayed here</p>
+                        <canvas id="mealChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -27,65 +27,35 @@
                 <h3 class="text-lg font-semibold text-gray-800">Financial Summary</h3>
             </div>
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Member</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Meals</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Meal Rate</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Cost</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Paid</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold mr-2">
-                                        JD
-                                    </div>
-                                    <span class="text-sm text-gray-900">John Doe</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">28</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$4.15</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$116.20</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">$120.00</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">-$3.80</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold mr-2">
-                                        JS
-                                    </div>
-                                    <span class="text-sm text-gray-900">Jane Smith</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">25.5</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$4.15</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$105.83</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">$0.00</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">$105.83</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="h-8 w-8 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs font-bold mr-2">
-                                        RJ
-                                    </div>
-                                    <span class="text-sm text-gray-900">Robert Johnson</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">26</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$4.15</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$107.90</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">$150.00</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">-$42.10</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <table class="w-full border-collapse text-sm">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Meals</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bazar Share</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rent / Utility</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Bill</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Advance</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Paid</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach($reports as $item)
+            <tr>
+                <td class="border px-3 py-2">{{ $item['name'] }}</td>
+                <td class="border px-3 py-2">{{ $item['meal'] }}</td>
+                <td class="border px-3 py-2">Tk. {{ $item['bazarShare'] }} </td>
+                <td class="border px-3 py-2">Tk. {{ $item['utility'] }} </td>
+                <td class="border px-3 py-2 font-semibold">Tk. {{ $item['totalDue'] }} </td>
+                <td class="border px-3 py-2 text-green-600">Tk. {{ $item['advance'] }} </td>
+                <td class="border px-3 py-2 text-red-600 font-bold">Tk. {{ $item['balance'] }} </td>
+                <td class="border px-3 py-2 text-blue-500 font-bold">Tk. {{ $item['paid'] }} </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
             </div>
         </div>
     </div>

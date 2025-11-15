@@ -1,4 +1,4 @@
-@extends('operation.layout.app')
+@extends('manager.layout.app')
 @section('content')
  <!-- Operations Profile -->
  <div id="operations-profile" class="page">
@@ -14,24 +14,18 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                                <input type="text" class="w-full p-2 border border-gray-300 rounded-md" value="Operations">
+                                <input type="text" class="w-full p-2 border border-gray-300 rounded-md" value="{{ $users->name }}">
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                                <input type="text" class="w-full p-2 border border-gray-300 rounded-md" value="Manager">
-                            </div>
+                            
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input type="email" class="w-full p-2 border border-gray-300 rounded-md" value="operations@mealsystem.com">
+                                <input type="email" class="w-full p-2 border border-gray-300 rounded-md" value="{{ $users->email }}">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                                <input type="tel" class="w-full p-2 border border-gray-300 rounded-md" value="+1 (555) 123-4567">
+                                <input type="tel" class="w-full p-2 border border-gray-300 rounded-md" value="{{ $users->phone }}">
                             </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
-                                <textarea class="w-full p-2 border border-gray-300 rounded-md" rows="2">123 Main Street, City, State 12345</textarea>
-                            </div>
+                           
                         </div>
                         <div class="flex justify-end mt-4">
                             <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Update Profile</button>
@@ -70,9 +64,9 @@
                         <div class="h-24 w-24 rounded-full bg-blue-500 flex items-center justify-center text-white text-2xl font-bold mb-4">
                             <span>OM</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-gray-800">Operations Manager</h3>
-                        <p class="text-gray-600 text-sm">operations@mealsystem.com</p>
-                        <p class="text-gray-500 text-xs mt-2">Member since: January 2023</p>
+                        <h3 class="text-lg font-semibold text-gray-800">{{ $users->role }}</h3>
+                        <p class="text-gray-600 text-sm">{{ $users->email }}</p>
+                        <p class="text-gray-500 text-xs mt-2">Member since: {{ $users->created_at->format('d.m.Y') }}</p>
                     </div>
                 </div>
 

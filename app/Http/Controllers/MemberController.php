@@ -12,6 +12,7 @@ use App\Models\MemberAdvance;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Bazar;
+use App\Models\Payment;
 
 class MemberController extends Controller
 {
@@ -89,8 +90,7 @@ class MemberController extends Controller
         $myTotalPayments = $totalAdvance;        
        
         
-       
-       
+      
         
         return view('members.overview', 
         compact( 'myTotalMeals', 'bazarBillPerHead', 'totalAdvance', 'totalCount')
@@ -286,7 +286,13 @@ class MemberController extends Controller
     //member history
     public function history()
     {
-        return view('members.history');
+        $peymentHistorey = Payment::where('user_id', Auth::id())    
+                            ->orderBy('id', 'desc')
+                            ->get();
+        //for month
+
+
+        return view('members.history', compact('peymentHistorey'));
     }
 
 
